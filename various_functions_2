@@ -1,0 +1,50 @@
+;factorial program
+(define (fact n)
+  (if (= n 0)
+      1
+      (* n (fact (- n 1)))
+                      )
+         )
+         
+;Binomial Coefficient
+(define (n-choose-k n k)
+  (if (< k 0)
+      0
+  (if (< n k)
+      0
+  (/ (fact n) (*(fact (- n k))(fact k))))))
+
+;b to the e'th power
+(define (pow b e)
+  (if (= b 0)
+      1
+  (if (= e 1)
+      b
+  (* b (pow b (- e 1))))))
+
+
+(define (zeno n)
+  (if (= n 0)
+      0
+      ( + (/ 1 (pow 2 n))(zeno (- n 1)))))
+      
+;finds the number of digits in an integer
+(define (num-digits n)
+  (if (< n 10)
+      1
+  (+ 1 (num-digits (/ n 10)))))
+
+
+(define (a n)
+  (if (< n 0)
+      1
+  (if (= n 0)
+      1
+  (* 2( a (- n 1))))))
+
+(define (num-ancestors n)
+  (if (= n 1)
+      2
+  (+ (num-ancestors (- n 1)) (a n))))
+
+  
