@@ -1,0 +1,48 @@
+(define (square x)(* x x))
+(define (cube x) (* (* x x) x))
+(define (quad x) (*(* (* x x) x)x))
+(define (five x) (*(*(* (* x x) x)x)x))
+(define (q x) (expt x 5))
+(define (sp x) (* (q x)(q x)))
+(define (eighth x) (*(* (cube x) (cube x))(square x)))
+(define (q x) (+(-(+(+(expt x 5)(* 11(expt x 4)))(* 24(expt x 3)))x)39))
+(define (sp x)(* (q x)(q x)))
+(define (sixty-fourth x)(* (eighth x)(expt x 56)))
+
+(define (fib-cf n)
+    (cond
+      ((= n 0) 0)
+      ((= n 1) 1)
+      (else
+        (*(-(expt
+         (/
+         (+ 1 (sqrt 5))2) n)
+          (expt
+         (/
+         (- 1 (sqrt 5))2) n))(/ 1 (sqrt 5))))))
+
+(define (root1 a b c)
+  (cond
+    ((= a 0) 0)
+    ((= (- (square b) (* 4 a c))0) 0)
+    (else
+   (/ (+(* -1 b)(sqrt (- (square b) (* 4 a c))))(* 2 a)))))
+
+(define (root2 a b c)
+  (cond
+    ((= a 0) 0)
+    ((= (- (square b) (* 4 a c))0) 0)
+    (else
+   (/ (-(* -1 b)(sqrt (- (square b) (* 4 a c))))(* 2 a)))))
+
+(define (number-of-roots a b c)
+  (cond
+    ((= (root1 a b c)(root2 a b c)) 1)
+    (else
+     2)))
+(define (real-roots? a b c)
+  (cond
+    ((>(- (square b) (* 4 a c))0)#t)
+    ((=(- (square b) (* 4 a c))0)#t)
+    (else
+     #f)))
