@@ -1,0 +1,72 @@
+(define (square x) (* x x))
+
+(define (fact n)
+  (if (= n 0)
+      1
+      (* n (fact (- n 1)))
+                      )
+         )
+         
+(define (pow b e)
+  (if (= b 0)
+      1
+  (if (= e 1)
+      b
+  (* b (pow b (- e 1))))))
+
+(define (odd-sum n)
+(if (= n 0)
+      0
+(if (= n 1)
+    1
+(+ (- (* 2 n) 1)
+   (odd-sum ( - n 1))
+   )
+)))
+
+(define (sum-from-to a b)
+  (if (> a b)
+      0
+  (if (= a b)
+      a
+   (+ b (sum-from-to a (- b 1))))))
+
+(define (k-product k)
+  (if ( < k 0)
+      0
+  (if (= k 0)
+      0
+  (if (= k 1)
+      0
+  (if (= k 2)
+      .75
+  (* (- 1 (/ 1 (* k k)))
+     (k-product (- k 1))))))))
+
+(define (babylonian x k)
+  (if (= k 0)
+      (/ x 2)
+   (* (/ 1 2) (+ (babylonian x (- k 1)) (/ x (babylonian x (- k 1)))))))
+
+(define (first-value-k-or-higher x tol k)
+  (if (< (abs (- (square (bablyonian x k)) x)) tol)
+      k
+      (first-value-k-or-higher x tol (+ k 1))))
+  
+(define (terms-needed x tol)
+  (define (first-value-k-or-higher x tol k)
+    (if (< (abs (- (square (babylonian x k)) x)) tol)
+        k
+        (first-value-k-or-higher x tol (+ k 1))))
+  (first-value-k-or-higher x tol 0))
+
+(define (new-cos x n)
+  (if (= n 0)
+      1
+      (+ (* (expt -1 n)
+            (/ (expt x (* 2 n))
+               (fact (* 2 n))))
+         (new-cos x (- n 1)))
+  ))
+              
+     
